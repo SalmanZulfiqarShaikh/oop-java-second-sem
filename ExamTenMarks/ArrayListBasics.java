@@ -66,6 +66,12 @@ public class ArrayListBasics {
 
         for (int i = 0; i < numbers.size(); i++) {
                 System.out.println("\n Element at index " + i + ": " + numbers.get(i));
-        }
+
+
+            }
+            System.out.println();
+            System.out.println("does list contains 13? " + numbers.contains(13));
+            System.out.println("is list empty? " + numbers.isEmpty());
+            System.out.println("index of 69 is: " +  numbers.indexOf(69));
     }
 }
