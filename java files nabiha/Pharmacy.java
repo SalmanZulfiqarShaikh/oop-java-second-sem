@@ -1,9 +1,11 @@
 import java.util.*;
+
+import ExamTenMarks.ArrayListSSS;
 public class Pharmacy {
 
-    ArrayList<Medicine> medicines;
+    ArrayListSSS<Medicine> medicines;
     public Pharmacy(){
-    medicines = new ArrayList<>();
+    medicines = new ArrayListSSS<>();
 }
     // Add medicine
     public void addMedicine(Medicine medicine){
@@ -26,7 +28,7 @@ public class Pharmacy {
     }
 
     // Medicine List
-    public ArrayList<Medicine> getMedicineList(){
+    public ArrayListSSS<Medicine> getMedicineList(){
         return medicines;
     }
 }
