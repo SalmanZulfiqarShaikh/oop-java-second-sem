@@ -32,7 +32,7 @@ public class HashSetBasics {
                Iterator it = numbers.iterator();
  System.out.println("Iterating through HashSet elements:");
                while (it.hasNext()) {
-                     System.out.println(it.next());
+                     System.out.print(it.next() + " ");
                }
 
             
