@@ -3,17 +3,48 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class index {
 
-    public static double ColSum(ArrayList<ArrayList<String>> ciList, int colIndex) {
-        double sum = 0;
-        for (ArrayList<String> row : ciList) {
-            try {
-                sum += Double.parseDouble(row.get(colIndex));
-            } catch (Exception e) {
-                
-            }
+class CountryInfo {
+    String name;
+    double surface;
+    double population;
+    double lifeExp;
+
+    
+    public CountryInfo(String line) {
+        String[] values = line.split("\t");
+
+        
+        try {
+            name = values[0];
+            surface = Double.parseDouble(values[4]);
+            population = Double.parseDouble(values[6]);
+            lifeExp = Double.parseDouble(values[7]);
+        } catch (Exception e) {
+            
+            name = "Unknown";
+            surface = 0;
+            population = 0;
+            lifeExp = 0;
         }
+    }
+}
+
+public class salman {
+
+    public static double ColSum(ArrayList<CountryInfo> ciList, int colIndex) {
+        double sum = 0;
+
+        for (int i = 0; i < ciList.size(); i++) {
+            CountryInfo c = ciList.get(i);
+            if (colIndex == 4)
+                sum += c.surface;
+            else if (colIndex == 6)
+                sum += c.population;
+            else if (colIndex == 7)
+                sum += c.lifeExp;
+        }
+
         return sum;
     }
 
@@ -22,39 +53,35 @@ public class index {
         File myFile = new File(filePath);
 
         try {
-            ArrayList<ArrayList<String>> ciList = new ArrayList<>();
+            ArrayList<CountryInfo> ciList = new ArrayList<>();
             Scanner fileReader = new Scanner(myFile);
 
-            fileReader.nextLine();
+           
+            if (fileReader.hasNextLine())
+                fileReader.nextLine();
 
+            
             while (fileReader.hasNextLine()) {
                 String line = fileReader.nextLine().trim();
-                if (line.isEmpty()) continue;
-
-                String[] values = line.split("\t");
-
-                ArrayList<String> row = new ArrayList<>();
-                for (String v : values) row.add(v);
-
-                ciList.add(row);
+                if (line.isEmpty()) continue; // skip blank lines
+                CountryInfo country = new CountryInfo(line);
+                ciList.add(country);
             }
             fileReader.close();
 
-
+        
             double surfaceSum = ColSum(ciList, 4);
             double populationSum = ColSum(ciList, 6);
             double lifeExpSum = ColSum(ciList, 7);
-
             double lifeExpAvg = ciList.size() > 0 ? lifeExpSum / ciList.size() : 0;
 
-
+            
             System.out.println("Total Surface Area Sum : " + surfaceSum);
             System.out.println("Total Population Sum   : " + populationSum);
             System.out.println("Average Life Expectancy: " + lifeExpAvg);
 
-
         } catch (FileNotFoundException fnfe) {
-            System.out.println("file not found: " + fnfe.getMessage());
+            System.out.println("File not found: " + fnfe.getMessage());
         }
     }
 }
