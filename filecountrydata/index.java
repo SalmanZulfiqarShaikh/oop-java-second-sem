@@ -17,17 +17,39 @@ public class index {
         String filePath = "countryInfo.txt";
         File myFile = new File(filePath);
 
-        ArrayList<String> rowData = new ArrayList<String>();
+        
 
         try {
-            Scanner FileReader = new Scanner(myFile);
-            FileReader.nextLine();
-            while (FileReader.hasNextLine()) {
-                String line = FileReader.nextLine();
-                rowData.add(line);
-            } 
+            ArrayList<ArrayList<String>> ciList = new ArrayList<>();
+            Scanner fileReader = new Scanner(myFile);
+            fileReader.nextLine();
+            while (fileReader.hasNextLine()) {
+                String line = fileReader.nextLine();
+                String[] values = line.split("\t");
+                ArrayList<String> row = new ArrayList<>();
+                for (String val : values) {
+                    row.add(val);
+                }
+                ciList.add(row);
+            }
+            fileReader.close();
+            
+
+            double surfaceSum = ColSum(ciList, 4);
+            double populationSum = ColSum(ciList, 6);
+            double lifeExpSum = ColSum(ciList, 7);
+            double lifeExpAvg = lifeExpSum / ciList.size();
+
+            System.out.println("the total u");
+
+
         } catch (FileNotFoundException fnfe) {
             System.out.println("file not found: " + fnfe.getMessage());
         }
+
+        public static double ColSum () {
+
+        }
     }
 }
+
