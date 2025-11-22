@@ -1,0 +1,156 @@
+1. What is Polymorphism?
+
+Polymorphism literally means: “many forms”.
+
+In programming:
+
+Polymorphism allows one thing (like a method or object) to behave in different ways depending on the context.
+
+Think of it like your phone:
+
+Same “phone” can:
+
+Make calls
+
+Take pictures
+
+Play music
+
+Different actions using the same interface → that’s polymorphism.
+
+2. Two Types of Polymorphism in Java
+
+Java has two main types:
+
+Compile-time polymorphism (a.k.a method overloading)
+
+Runtime polymorphism (a.k.a method overriding)
+
+A) Compile-time Polymorphism (Method Overloading)
+
+Definition:
+
+The method to execute is decided at compile time.
+
+Usually done by changing the method’s parameters (number or type).
+
+Key Points:
+
+Same method name
+
+Different parameter list (number/type)
+
+Return type can be same or different
+
+Happens before the program runs → compiler knows which method to call
+
+Example:
+
+class Person {
+    String name;
+
+    // Method 1: no parameters
+    void walk() {
+        System.out.println(name + " is walking");
+    }
+
+    // Method 2: takes steps as parameter
+    void walk(int steps) {
+        System.out.println(name + " walked " + steps + " steps");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person p = new Person();
+        p.name = "Salman";
+
+        p.walk();      // calls method 1
+        p.walk(1000);  // calls method 2
+    }
+}
+
+
+Output:
+
+Salman is walking
+Salman walked 1000 steps
+
+
+✅ The compiler decides which walk() method to call based on parameters.
+
+B) Runtime Polymorphism (Method Overriding)
+
+Definition:
+
+The method to execute is decided at runtime.
+
+Done using inheritance and overriding a parent method.
+
+Key Points:
+
+Same method name
+
+Same parameters
+
+Subclass changes the behavior of parent method
+
+Happens when the program is running → JVM decides which method to call
+
+Example:
+
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal a;
+
+        a = new Dog();
+        a.sound();  // Output: Dog barks
+
+        a = new Cat();
+        a.sound();  // Output: Cat meows
+    }
+}
+
+
+Output:
+
+Dog barks
+Cat meows
+
+
+Compile Time : 
+Compile time (before running)
+Same method name? Yes
+Parameters Must be different
+Return type Can be same or different
+Inheritance required? Not necessary
+
+Run Time : 
+Whike Running
+Same method name? Yes
+Parameters Must be same
+Return type Must be different
+Inheritance required? Yes
+
+
+2.Constructor:
+
+A constructor is a special method in a class that has the same name as the class and no return type. It is automatically called when an object is created to initialize the object’s properties. Constructors can be default (no parameters) or parameterized (with arguments).
