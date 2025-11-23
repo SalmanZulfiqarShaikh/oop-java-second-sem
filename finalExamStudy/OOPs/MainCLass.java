@@ -1,8 +1,16 @@
 package finalExamStudy.OOPs;
 //Polymorphism is ek hi cheez ka different forms m hona. There are two types of polymorphism in Java: compile-time (or static) polymorphism and runtime (or dynamic) polymorphism. matlab koi ek aadhi cheez change kardena puray cheez ko affect kiye bghair
+
+
 // Inheritance is k ek class doosri class ki properties aur behaviors ko inherit kr skti hai. matlab ek class k andar doosri class k features use kr skty ho without rewriting the code or uski baad may apni khud ki properties add kr skty ho
+
+
 // static is jo class k saath hota naa k object k saath. matlab agar ap kisi variable ya method ko static declare krty ho to wo class k saath belong krta hai na k kisi specific object k saath. is ka matlab hai k ap bina class ka object create kiye bhi us static variable ya method ko access kr skty ho
+
+
 // this reference hota hai jo current object ko refer krta hai. matlab jb ap kisi object k andar kisi method ko call krty ho to wo method usi object k context m kaam krta hai. is ka use apko tab krna chahiye jb apko current object ki properties ya methods ko access krna ho ya phir jab apko constructor chaining krni ho
+
+
 // super keyword hota hai jo parent class k members ko refer krta hai. matlab jb ap kisi subclass m ho aur apko parent class k properties ya methods ko access krna ho to ap super keyword ka use kr skty ho. is ka use apko tab krna chahiye jb apko parent class k members ko override krna ho ya phir jab apko parent class k constructor ko call krna ho
 
 
