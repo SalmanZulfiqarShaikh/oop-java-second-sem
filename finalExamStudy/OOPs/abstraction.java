@@ -1,5 +1,5 @@
 package finalExamStudy.OOPs;
-
+//Agar abstract class mein koi abstract method hai, to uska child class mein implement karna zaroori hai (unless child class bhi abstract ho).
 // 1. Interface: Contract for walking capability
 interface Walkable {
     // Interface method is public and abstract by default

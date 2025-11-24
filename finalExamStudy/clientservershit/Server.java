@@ -4,46 +4,38 @@ import java.net.*;
 
 public class Server {
     public static void main(String[] args) throws IOException {
-       ServerSocket ss = new ServerSocket(8888);
-System.out.println("Server is running and waiting for connections...");
+      ServerSocket ss = new ServerSocket(8888);
+      System.out.println("Salman's Server is Running...");
+        Socket s = ss.accept();
+        System.out.println("A Client has connected.");
 
-Socket s = ss.accept();
-System.out.println("Client connected: " + s.getInetAddress());
+        BufferedReader Clientnput = new BufferedReader(new InputStreamReader(s.getInputStream()));
+        PrintWriter ServerInput = new PrintWriter(s.getOutputStream(), true);
+        BufferedReader KeyboardInput = new BufferedReader(new InputStreamReader(System.in));
 
-BufferedReader clientInput = new BufferedReader(new InputStreamReader(s.getInputStream()));
-PrintWriter ServerInput = new PrintWriter(s.getOutputStream(), true);    
-BufferedReader KeyboardInput = new BufferedReader(new InputStreamReader(System.in));
+        String ClientName = Clientnput.readLine();
+        System.out.println(ClientName + " has joined the chat.");
 
-System.out.println("Waiting for client message...");
-String clientName = clientInput.readLine();
+        ServerInput.println("Welcome " + ClientName + " to Salman's Server!");
 
-// Send welcome message
-ServerInput.println("Welcome " + clientName + "!");
+        String messageFromClient, messageToClient;
 
-System.out.println(clientName + " has connected.");
-
-String messageFromClient, messageToClient;
-
-while(true) {
-    messageFromClient = clientInput.readLine();
-    if(messageFromClient == null || messageFromClient.equalsIgnoreCase("exit")) {
-        System.out.println(clientName + " has disconnected.");
-        break;
+        while (true) {
+            messageFromClient = Clientnput.readLine();
+            if (messageFromClient == null || messageFromClient.equalsIgnoreCase("exit") || messageFromClient.equalsIgnoreCase("") || messageFromClient.equalsIgnoreCase("bye") || messageFromClient.equalsIgnoreCase("quit")) {
+                System.out.println(ClientName + " has disconnected!");
+                break;
+            }
+            System.out.println(ClientName + ": " + messageFromClient);
+            System.out.print("You: ");
+            messageToClient = KeyboardInput.readLine();
+            ServerInput.println(messageToClient); 
+            if (messageToClient == null || messageToClient.equalsIgnoreCase("exit") || messageToClient.equalsIgnoreCase("") || messageToClient.equalsIgnoreCase("bye") || messageToClient.equalsIgnoreCase("quit")) {
+                System.out.println("Chat ended by server.");
+                break;
+        }
     }
-
-    System.out.println(clientName + ": " + messageFromClient);
-    System.out.print("Server: ");
-
-    messageToClient = KeyboardInput.readLine();
-    ServerInput.println(messageToClient);
-
-    if(messageToClient.equalsIgnoreCase("exit")) {
-        System.out.println("You have disconnected from the client.");
-        break;
-    }
+    s.close();
+    ss.close();
 }
-
-s.close();
-ss.close();
-    }
 }
