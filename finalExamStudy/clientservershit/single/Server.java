@@ -1,4 +1,4 @@
-package finalExamStudy.clientservershit;
+package finalExamStudy.clientservershit.single;
 import java.io.*;
 import java.net.*;
 
