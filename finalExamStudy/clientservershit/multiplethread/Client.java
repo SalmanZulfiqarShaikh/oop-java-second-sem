@@ -16,6 +16,10 @@ public class Client {
             PrintWriter clientOutput = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
             
             System.out.println("Connected to server at " + address + ":" + port);
+            System.out.println("Enter Your Name: ");
+            String name = keyboard.readLine();
+            clientOutput.println(name + " has joined the chat.");
+            clientOutput.flush();
             
             String msg;
             // The main thread is now only responsible for sending
@@ -30,7 +34,7 @@ public class Client {
                 }
                 
                 // Send the message
-                clientOutput.println(msg);
+                clientOutput.println(name + ": " + msg);
                 clientOutput.flush();
                 
                 // *** CRITICAL CHANGE: We no longer block waiting for a response here.
